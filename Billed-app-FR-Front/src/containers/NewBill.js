@@ -19,10 +19,9 @@ export default class NewBill {
     e.preventDefault()
     const fileInput = this.document.querySelector(`input[data-testid="file"]`)
     const file = fileInput.files[0]
-    const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
+    const fileName = file.name
     const fileExtension = fileName.split('.').pop()
-		const fileAuthorizedExtensions = ["jpg", "jpeg", "png"];
+    const fileAuthorizedExtensions = ["jpg", "jpeg", "png"]
     if(!fileAuthorizedExtensions.includes(fileExtension.toLowerCase())){
       fileInput.value = ""
 			fileInput.classList.add("is-invalid")
@@ -52,7 +51,6 @@ export default class NewBill {
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
       email,
